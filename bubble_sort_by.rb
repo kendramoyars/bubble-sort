@@ -1,10 +1,10 @@
-def bubble_sort(array)
+def bubble_sort_by(array)
   return array if array.size <= 1
   swap = true
     while swap
       swap = false
       (array.length - 1).times do |x|
-        if array[x] > array[x+1]
+        if (yield(array[x], array[x+1]) > 0)
           array[x], array[x+1] = array[x+1], array[x]
           swap = true
         end
@@ -12,4 +12,6 @@ def bubble_sort(array)
     end
   array
 end
-p bubble_sort([4,3,78,2,0,2])
+p bubble_sort_by(['hi', 'hello', 'hey']) { |left, right|
+  left.length - right.length
+  }
